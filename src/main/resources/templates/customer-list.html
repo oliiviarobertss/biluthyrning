@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Biluthyrning - Kundlista</title>
+</head>
+<body>
+<h1>Kundlista</h1>
+
+<!-- Sökruta -->
+<form action="/customers/search" method="get">
+    <input type="text" name="query" placeholder="Sök efter kund..." required>
+    <button type="submit">Sök</button>
+</form>
+
+<!-- Kundtabell -->
+<table border="1">
+    <tr>
+        <th>Namn</th>
+        <th>E-post</th>
+        <th>Telefonnummer</th>
+        <th>Åtgärder</th> <!-- Ny kolumn för att kunna radera -->
+    </tr>
+    <tr th:each="customer : ${customers}">
+        <td th:text="${customer.name}"></td>
+        <td th:text="${customer.email}"></td>
+        <td th:text="${customer.phoneNumber}"></td>
+        <td>
+            <form th:action="@{/customers/delete}" method="post" onsubmit="return confirmDelete()">
+                <input type="hidden" name="id" th:value="${customer.id}">
+                <button type="submit">Radera</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<!-- Formulär för att lägga till en ny kund -->
+<h2>Lägg till en ny kund</h2>
+<form action="/customers/add" method="post">
+    <input type="text" name="name" placeholder="Namn" required>
+    <input type="email" name="email" placeholder="E-post" required>
+    <input type="text" name="phoneNumber" placeholder="Telefonnummer" required>
+    <button type="submit">Lägg till kund</button>
+</form>
+
+<!-- Tillbaka till startsidan -->
+<p><a href="/">Tillbaka till startsidan</a></p>
+
+<!-- JavaScript för bekräftelse innan borttagning -->
+<script>
+    function confirmDelete() {
+        return confirm("Är du säker på att du vill radera denna kund?");
+    }
+</script>
+
+</body>
+</html>

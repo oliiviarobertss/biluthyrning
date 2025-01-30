@@ -1,0 +1,23 @@
+<table border="1" xmlns:th="http://www.w3.org/1999/xhtml">
+    <tr>
+        <th>Märke</th>
+        <th>Modell</th>
+        <th>Registreringsnummer</th>
+        <th>Pris per dag</th>
+        <th>Tillgänglig</th>
+        <th>Åtgärd</th>
+    </tr>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.brand}"></td>
+        <td th:text="${car.model}"></td>
+        <td th:text="${car.registrationNumber}"></td>
+        <td th:text="${car.rentalPrice} + ' kr'"></td>
+        <td th:text="${car.available ? 'Ja' : 'Nej'}"></td>
+        <td>
+            <form action="/cars/delete-car" method="post">
+                <input type="hidden" name="id" th:value="${car.id}">
+                <button type="submit" onclick="return confirm('Är du säker på att du vill radera denna bil?')">🗑 Ta bort</button>
+            </form>
+        </td>
+    </tr>
+</table>
