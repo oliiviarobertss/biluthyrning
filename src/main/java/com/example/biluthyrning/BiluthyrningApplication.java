@@ -19,7 +19,6 @@ public class BiluthyrningApplication {
 	@Bean
 	public CommandLineRunner demo(CarRepository carRepository, CustomerRepository customerRepository) {
 		return (args) -> {
-			// Add example data
 			carRepository.save(new Car("ABC123", "Volvo", "XC60", true, 1200));
 			carRepository.save(new Car("DEF456", "BMW", "320i", true, 1500));
 

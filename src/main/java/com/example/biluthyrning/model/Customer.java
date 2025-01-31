@@ -12,7 +12,7 @@ public class Customer {
     private String email;
     private String phoneNumber;
 
-    // Konstruktörer
+
     public Customer() {}
 
     public Customer(String name, String email, String phoneNumber) {
@@ -21,7 +21,6 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    // GETTERS & SETTERS (se till att id finns)
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

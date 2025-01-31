@@ -1,4 +1,4 @@
-package com.example.biluthyrning.controller;
+package com.example.biluthyrning.controllers;
 
 import com.example.biluthyrning.model.Car;
 import com.example.biluthyrning.service.CarService;
